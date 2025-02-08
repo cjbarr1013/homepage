@@ -1,0 +1,154 @@
+:root {
+  --carousel-background-color-light: #e1e1e1;
+  --carousel-background-color-dark: #1a1a1a;
+  --carousel-button-filter-light: invert(100%) sepia(1%) saturate(3189%)
+    hue-rotate(176deg) brightness(111%) contrast(76%); /* #e1e1e1 */
+  --carousel-button-filter-dark: invert(0%) sepia(3%) saturate(1668%)
+    hue-rotate(320deg) brightness(96%) contrast(80%); /* #1a1a1a */
+  --carousel-button-background-light: #e1e1e180;
+  --carousel-button-background-dark: #1a1a1a80;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+button {
+  font-family: inherit;
+  font-size: 100%;
+  cursor: pointer;
+}
+
+.carousel-container {
+  width: 100%;
+  height: 100%;
+  background-color: var(--carousel-background-color-light);
+  position: relative;
+}
+
+.carousel-images {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Can set to contain or cover */
+}
+
+.hidden {
+  display: none;
+}
+
+.carousel-nav-overlay {
+  display: grid;
+  grid-template: 40% 10% 40% 10% / 5% 75% 15% 5%;
+  justify-items: center;
+  align-items: end;
+  box-sizing: border-box;
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+}
+
+.carousel-btn {
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  opacity: 0.7;
+  transition: 0.2s;
+}
+
+.carousel-btn:hover {
+  opacity: 1;
+}
+
+.carousel-nav-overlay > .arrow {
+  align-self: center;
+  width: 2rem;
+  height: 2rem;
+}
+
+.carousel-nav-overlay > .left-arrow {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.carousel-nav-overlay > .left-arrow::before {
+  content: url(../icons/chevron-left.svg);
+}
+
+.carousel-nav-overlay > .right-arrow {
+  grid-column: 4 / 5;
+  grid-row: 2 / 3;
+}
+.carousel-nav-overlay > .right-arrow::before {
+  content: url(../icons/chevron-right.svg);
+}
+
+.carousel-nav-overlay > .nav-dots {
+  display: flex;
+  gap: 0.25rem;
+  justify-self: left;
+  margin-left: 1.5%;
+  grid-column: 1 / 3;
+  grid-row: 4 / 5;
+}
+
+.carousel-nav-overlay .nav-dot {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.carousel-nav-overlay .nav-dot::before {
+  content: url(../icons/circle-outline.svg);
+}
+
+.carousel-nav-overlay .nav-dot:hover::before {
+  content: url(../icons/circle.svg);
+}
+
+.carousel-nav-overlay .active-dot::before {
+  content: url(../icons/circle.svg);
+}
+
+.carousel-nav-overlay > .play-pause {
+  width: 2rem;
+  height: 2rem;
+  grid-column: 4 / 5;
+  grid-row: 4 / 5;
+}
+
+.carousel-nav-overlay > .play::before {
+  content: url(../icons/play.svg);
+}
+
+.carousel-nav-overlay > .pause::before {
+  content: url(../icons/pause.svg);
+}
+
+.carousel-nav-overlay > .arrow:hover,
+.carousel-nav-overlay > .play-pause:hover {
+  background-color: var(--carousel-button-background-light);
+}
+
+.carousel-nav-overlay > .left-arrow::before,
+.carousel-nav-overlay > .right-arrow::before,
+.carousel-nav-overlay .nav-dot::before,
+.carousel-nav-overlay .nav-dot:hover::before,
+.carousel-nav-overlay > .play::before,
+.carousel-nav-overlay > .pause::before {
+  filter: var(--carousel-button-filter-dark);
+}
