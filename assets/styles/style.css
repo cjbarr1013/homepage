@@ -88,9 +88,12 @@ h1 {
 }
 
 h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
 h3 {
+  font-size: 1.5rem;
 }
 
 h1,
@@ -103,7 +106,6 @@ h3 {
 
 h2,
 h3 {
-  font-size: 2rem;
   font-weight: 400;
 }
 
@@ -126,13 +128,14 @@ header {
 }
 
 /* So name-img-container does not overflow header */
-.content-container::after {
+header > .content-container::after {
   content: '';
   clear: both;
   display: table;
 }
 
 .content-container {
+  width: 100%;
   max-width: 1200px;
 }
 
@@ -150,17 +153,18 @@ header {
 .about-me-container {
   margin-top: 5rem;
   margin-left: 3rem;
-  padding: 1rem;
+  padding: 2rem;
   background-color: white;
 }
 
 .about-me-container > p {
-  margin: 1rem 0;
+  margin-bottom: 1rem;
   font-size: 1.2rem;
 }
 
 .icon-container {
   display: flex;
+  align-items: center;
   gap: 0.5rem;
   font-size: 1.5rem;
 }
@@ -171,4 +175,38 @@ header {
 
 .icons-left {
   justify-content: flex-start;
+}
+
+.project-container {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  background-color: white;
+}
+
+.project {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: rgb(58, 58, 226);
+}
+
+.project > img {
+  width: 100%;
+  height: 150px;
+  margin-bottom: 0.5rem;
+  object-fit: cover;
+}
+
+.project p {
+}
+
+.text-content {
+  padding: 1rem;
+  background-color: white;
+}
+
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
 }
