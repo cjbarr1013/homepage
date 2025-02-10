@@ -1,6 +1,11 @@
 :root {
   --img-ar: calc(3 / 3.5);
   --img-width: 500px;
+  --color-1: #3392c1;
+  --color-2: #74b3d2;
+  --color-3: #b0785b;
+  --primary-text-color: #4b5d61;
+  --secondary-text-color: #e8eced;
 }
 
 *,
@@ -90,7 +95,7 @@ h1 {
 
 h2 {
   font-size: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   text-decoration: underline;
 }
 
@@ -116,6 +121,21 @@ a {
   color: inherit;
   text-decoration: none;
   cursor: pointer;
+  transition: transform 0.3s ease-out, filter 0.3s;
+}
+
+a:hover {
+  transform: scale(1.3) rotate(360deg);
+  filter: invert(56%) sepia(18%) saturate(976%) hue-rotate(336deg)
+    brightness(87%) contrast(87%);
+}
+
+@keyframes animate-link {
+  from {
+  }
+
+  to {
+  }
 }
 
 header,
@@ -123,11 +143,15 @@ main,
 footer {
   display: flex;
   justify-content: center;
-  padding: 2rem;
+  padding: 3rem;
 }
 
 header {
-  background-color: rgb(58, 58, 226);
+  background-color: var(--color-1);
+}
+
+header > .content-container {
+  border-radius: 0.5rem;
 }
 
 header > .content-container,
@@ -157,13 +181,19 @@ header > .content-container::after {
   text-align: center;
   color: white;
   z-index: 1;
+  box-shadow: -0.5rem 0.5rem var(--color-2), -1rem 1rem var(--color-3);
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 .about-me-container {
   margin-top: 4.5rem;
   margin-left: 3rem;
   padding: 2rem;
+  color: var(--primary-text-color);
   background-color: white;
+  box-shadow: 0.5rem -0.5rem var(--color-2), 1rem -1rem var(--color-3);
+  border-radius: 0.5rem;
 }
 
 .about-me-container > p {
@@ -186,45 +216,71 @@ header > .content-container::after {
   justify-content: flex-start;
 }
 
+main {
+  color: var(--primary-text-color);
+}
+
 .project-container {
   display: grid;
-  grid-gap: 1rem;
+  grid-gap: 2rem;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   background-color: white;
 }
 
 .project {
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
   border-radius: 0.5rem;
-  background-color: rgb(58, 58, 226);
+  background-color: var(--color-1);
+  box-shadow: 0 0 0 0.25rem var(--color-2), 0 0 0 0.5rem var(--color-3);
+  transition: padding 0.2s ease-out;
+}
+
+.project:hover {
+  padding: 0rem;
+  min-height: initial;
+}
+
+.project:hover .text-content {
+  padding: 2rem;
 }
 
 .project > img {
   width: 100%;
   height: 150px;
-  margin-bottom: 0.5rem;
   object-fit: cover;
+  object-position: top;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
 }
 
 .text-content {
+  height: 100%;
   padding: 1rem;
   background-color: white;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  transition: padding 0.2s ease-out;
 }
 
 .title-container {
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
   margin-bottom: 0.5rem;
 }
 
 .icon-container img {
   width: 1.5rem;
   height: 1.5rem;
+  filter: invert(34%) sepia(38%) saturate(200%) hue-rotate(144deg)
+    brightness(91%) contrast(88%);
 }
 
 footer {
-  color: white;
-  background-color: rgb(58, 58, 226);
+  color: var(--secondary-text-color);
+  background-color: var(--color-1);
 }
 
 footer > .content-container {
@@ -267,22 +323,29 @@ footer .icon-container {
 }
 
 .footer-img {
+  min-width: 50%;
   background: url(../images/on-page/footer-low.jpg) no-repeat;
   background-size: cover;
   background-position: 0% 30%;
-  min-width: 50%;
+  box-shadow: 0 0 0 0.5rem var(--color-3);
 }
 
 @media (max-width: 600px) {
   header,
   main,
   footer {
-    padding: 1rem;
+    padding: 2rem 1rem;
   }
 
   header > .content-container {
     display: flex;
     flex-direction: column;
+    box-shadow: 0 0 0 0.25rem var(--color-2), 0 0 0 0.5rem var(--color-3);
+  }
+
+  .name-img-container,
+  .about-me-container {
+    box-shadow: none !important;
   }
 
   .name-img-container {
@@ -290,11 +353,15 @@ footer .icon-container {
     margin-right: 0;
     margin-bottom: 0;
     min-width: 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 
   .about-me-container {
     margin-top: 0;
     margin-left: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
 
   .project-container {
@@ -312,17 +379,22 @@ footer .icon-container {
 }
 
 @media (max-width: 1200px) {
+  header,
+  main,
+  footer {
+    padding: 2rem;
+  }
+
   header > .content-container {
     max-width: 900px;
   }
 
   .name-img-container {
     max-width: 350px;
+    box-shadow: -0.25rem 0.25rem var(--color-2), -0.5rem 0.5rem var(--color-3);
+  }
+
+  .about-me-container {
+    box-shadow: 0.25rem -0.25rem var(--color-2), 0.5rem -0.5rem var(--color-3);
   }
 }
-
-/* Add animations to buttons
-Add shadows/accents/border/border-radius to divs and images
-Make animations of this dude's head bouncing around
-Edit and finalize text content
-Maybe look for alternative body font */
